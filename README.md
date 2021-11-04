@@ -12,7 +12,7 @@ npm i os-gmail-handler
 ## Allow Gmail API
 To allow this repo to run, you have to supply your gmail JSON credentials to the handler. 
 
-To do so, follow these steps to open the Gmail API:
+To do so, follow these steps:
 1) Go to the Google Cloud Console and open a new project. Search for "Gmail API", enable it
 2) In the Google Cloud Console, Click on the drawer at the top left and click API & Services -> Credentials
 3) At the top "Create credentials" -> "OAuth client ID" -> "Desktop app"
