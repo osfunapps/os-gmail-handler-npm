@@ -1,25 +1,33 @@
 const fs = require('fs');
+const {google} = require('googleapis');
 
-const self = module.exports = {
+// actions
+module.exports.msgSearcher = require("./api/actions/msgSearcher")
+module.exports.msgSender = require("./api/actions/msgSender")
+module.exports.msgReader = require("./api/actions/msgReader")
+module.exports.msgTools = require("./api/tools/msgTools")
 
-    /**
-     * Will initiate the gmail api client.
-     * You'll need a path to you're credentials and token to make stuff work.
-     *
-     * Just:
-     * 1) Enable Gmail API in your Google Cloud Console
-     * 2) In the Google Cloud Console, Click on the drawer at the top left and click API & Services -> Credentials
-     * 3) At the top "Create credentials" -> "OAuth client ID" -> "Desktop app"
-     * 4) Save the JSON and point to it in the credentialsPath prop
-     */
-    initiateGMAILApi: function (credentialsPath, tokenPath, callback, gmailScopes = self.DEFAULT_SCOPES) {
-        fs.readFile(credentialsPath, (err, content) => {
-            if (err) return console.log('Error loading client secret file:', err);
-            authorize(gmailScopes, tokenPath, JSON.parse(content), callback);
-        });
-    }
+/**
+ * Will initiate the gmail api client.
+ * You'll need a path to you're credentials and token to make stuff work.
+ *
+ * Just:
+ * 1) Enable Gmail API in your Google Cloud Console
+ * 2) In the Google Cloud Console, Click on the drawer at the top left and click API & Services -> Credentials
+ * 3) At the top "Create credentials" -> "OAuth client ID" -> "Desktop app"
+ * 4) Save the JSON and point to it in the credentialsPath prop
+ * 5) Set a custom path to where you want the token to be stored. (my/token/path.json)
+ */
+module.exports.init = function (credentialsPath, tokenPath, callback, gmailScopes = DEFAULT_SCOPES) {
+    fs.readFile(credentialsPath, (err, content) => {
+        if (err) return console.log('Error loading client secret file:', err);
+        authorize(gmailScopes, tokenPath, JSON.parse(content), callback);
+    });
 }
 
+
+
+// package private
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
  * given callback function.
@@ -72,9 +80,11 @@ function getNewToken(oAuth2Client, tokenPath, callback, scopes) {
             callback(oAuth2Client);
         });
     });
+
 }
 
-module.exports.DEFAULT_SCOPES = [
+
+DEFAULT_SCOPES = [
     'https://mail.google.com/',
     'https://www.googleapis.com/auth/gmail.modify',
     'https://www.googleapis.com/auth/gmail.compose',
