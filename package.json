@@ -1,0 +1,23 @@
+{
+  "name": "os-gmail-handler",
+  "version": "1.0.0",
+  "description": "This module contains simplified gmail api commands.",
+  "main": "index.js",
+  "dependencies": {
+    "googleapis": "^89.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/osfunapps/os-gmail-api-handler-npm"
+  },
+  "keywords": [
+    "npm",
+    "node",
+    "project",
+    "gmail",
+    "js",
+    "api"
+  ],
+  "author": "osfunapps",
+  "license": "ISC"
+}
