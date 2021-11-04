@@ -52,6 +52,8 @@ async function onPostLoad(auth) {
         await gmailApi.msgSender.sendMessage(auth, from.email, "Whatcha doin tonight?", "haha funny and corny content")
     }
 }
+
+start()
 ```
 And more...
 
